@@ -39,18 +39,23 @@ class App extends Component {
   formSubmitHandler = data => {
     data.id = nanoid();
     let current = this.state.contacts;
-    current.filter(contact =>
-      contact.name === data.name ?
-      alert(`${data.name} is already in contacts`) :
-      this.setState({
-        contacts: [...current, data],
-        filter: "",
-      })
-    )
+
+    const myContacts = current.filter(
+      ({ name }) => name.toLowerCase() === data.name.toLowerCase()
+    );
+
+    if (myContacts.length) {
+      alert(`${data.name} is already in contacts`);
+      return;
+    }
+
+    this.setState(({ contacts }) => ({
+      contacts: [...contacts, data],
+    }));
   }
 
   changeFilter = evt => {
-      this.setState({filter: evt.target.value});
+    this.setState({filter: evt.target.value});
   }
 
   deleteContact = evt => {
@@ -62,7 +67,6 @@ class App extends Component {
   render() {
     const { contacts, filter } = this.state;
     const filteredContacts = contacts.filter(contact => contact.name.includes(this.state.filter))
-
 
     return (
       <div
