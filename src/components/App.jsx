@@ -40,10 +40,8 @@ class App extends Component {
     data.id = nanoid();
     let current = this.state.contacts;
 
-    const myContacts = current.filter(
-      ({ name }) => name.toLowerCase() === data.name.toLowerCase()
-    );
-
+    const myContacts = current.filter(contact => contact.name === data.name);
+    
     if (myContacts.length) {
       alert(`${data.name} is already in contacts`);
       return;
@@ -55,7 +53,7 @@ class App extends Component {
   }
 
   changeFilter = evt => {
-    this.setState({filter: evt.target.value});
+    this.setState({filter: evt.target.value.toLowerCase()});
   }
 
   deleteContact = evt => {

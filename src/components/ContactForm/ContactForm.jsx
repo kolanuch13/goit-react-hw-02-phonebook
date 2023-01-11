@@ -1,5 +1,4 @@
 import { Component } from "react";
-import { nanoid } from 'nanoid';
 import css from './ContactForm.module.css';
 
 class ContactForm extends Component {
@@ -11,8 +10,6 @@ class ContactForm extends Component {
             number: "",
         }
     }
-    
-    loginInputId = nanoid();
   
     handleSubmit = evt => {
         evt.preventDefault();
