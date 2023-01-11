@@ -1,13 +1,16 @@
-import React from "react"
+import React from "react";
+import PropTypes from 'prop-types';
 
 const Filter = ({value, onChange}) => (
-    // const changeFilter = evt => {
-    //     filter = evt.current.target.value;
-    // }
     <div>
         <span>Search by Name</span>
         <input type="text" value={value} onChange={onChange} />
     </div>
 )
+
+Filter.propTypes = {
+    value: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired
+}
 
 export default Filter;
