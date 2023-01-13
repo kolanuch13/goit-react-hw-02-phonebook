@@ -53,7 +53,7 @@ class App extends Component {
   }
 
   changeFilter = evt => {
-    this.setState({filter: evt.target.value.toLowerCase()});
+    this.setState({filter: evt.target.value});
   }
 
   deleteContact = evt => {
@@ -64,7 +64,7 @@ class App extends Component {
 
   render() {
     const { contacts, filter } = this.state;
-    const filteredContacts = contacts.filter(contact => contact.name.includes(this.state.filter))
+    const filteredContacts = contacts.filter(contact => contact.name.toLowerCase().includes(this.state.filter.toLowerCase()))
 
     return (
       <div
